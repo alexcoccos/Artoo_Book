@@ -16,7 +16,7 @@ module.exports = (function(){
     var Utente = req.body;
     var newUtente = new User(Utente);
     newUtente.save().then(function(data){
-      res.send(200).json(data);
+      res.status(200).json(data);
     })
     .catch(function(err){
       res.status(500).send(err);
@@ -29,7 +29,7 @@ module.exports = (function(){
       res.status(200).json(data);
     })
     .catch(function(err){
-      res.stauts(500).send(err);
+      res.status(500).send(err);
     })
   };
   //elimina utente
@@ -52,11 +52,10 @@ module.exports = (function(){
       res.status(500).send(err);
     });
   };
-  //Ricerca per neome e cognome 
+  //Ricerca per neome e cognome
   var cercaUser = function(req,res){
     var nome = req.query.nome;
     var cognome = req.query.cognome;
-    lista=[];
     User.find(
     {
       $or:[{nome: nome},{cognome: cognome}]
@@ -66,9 +65,6 @@ module.exports = (function(){
       res.status(500).send(err);
     });
   }
-
-
-
 
 
   return{
