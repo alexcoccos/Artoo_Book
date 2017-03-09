@@ -7,11 +7,13 @@ router.get('/',Users.getUsers);
 //crea utente
 router.post('/',Users.createUsers);
 //dettaglio utente
-router.get('/:id',Users.detailUsers);
+router.get('/id/:id',Users.detailUsers);
 //elimina utente
-router.delete('/:id',Users.deleteUsers);
+router.delete('/id/:id',Users.deleteUsers);
 //modifica/aggiorna utente
-router.put('/:id',Users.updateUsers);
+router.put('/id/:id',Users.updateUsers);
+//ricerca per nome o per cognomeù
+router.get('/cerca/',Users.cercaUser);
 
 
 
