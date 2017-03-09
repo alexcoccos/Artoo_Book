@@ -1,6 +1,7 @@
 var Users= (function(){
 
   var creaUtente = function(data){
+    //serve per passare i dati dalla form al db
     return $.ajax({
       url : "http://localhost:3000/Users",
       method : "POST",
@@ -13,7 +14,28 @@ var Users= (function(){
       console.log(err);
     })
   }
+  var getUsers = function(){
+    return $.ajax({
+      url: "http://localhost:3000/Users",
+      method: "GET",
+      contentType: "application/json",// descrive il contenuto del file
+      dataType: "json",//descrive il tipo di file
+    });
+  }
+
+  var deleteUser = function(id){
+    return $.ajax({
+      url: "http://localhost:3000/Users/id/"+ id,
+      method: "DELETE",
+      contentType: "application/json",// descrive il contenuto del file
+      dataType: "json",//descrive il tipo di file
+    });
+  }
+
+  //sempre alla fine
   return{
-    creaUtente: creaUtente
+    creaUtente: creaUtente,
+    getUsers:   getUsers,
+    deleteUser: deleteUser
   }
 })();

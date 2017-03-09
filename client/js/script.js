@@ -13,5 +13,45 @@ $(document).ready(function(){
       eta:     eta
     }
     Users.creaUtente(nuovo);
+    // this.nome.value= "";
+    // this.cognome.value= "";
+    // this.sesso.value="";
+    // this.eta.value="";
+    // oppure
+    this.reset();//pulisce la form dopo aver premuto il tasto
+    disegnaTab();
   });
+
+  function disegnaTab(){
+    var str = "";
+    Users.getUsers().then(function(Users){
+      for(let i=0; i<Users.length;i++)
+      {
+        str += "<tr>"+
+               "<td>" + Users[i].nome + "</td>"+
+               "<td>" + Users[i].cognome + "</td>"+
+               "<td>" + Users[i].sesso + "</td>"+
+               "<td>" + Users[i].eta + "</td>"+
+               "<td><button idutente='" + Users[i]._id+ "' class=' btn btn-primary glyphicon glyphicon-trash elimina'></button></td>"+
+               "</tr>";
+      }
+      $('#tbody').html(str);
+      $('.elimina').click(function(){
+        var id = $(this).attr("idutente");
+        elimina(id);
+      })
+    }).catch();
+
+  }
+
+  function elimina(id){
+    Users.deleteUser(id).then(function(){
+      disegnaTab();
+    }).catch(function(err){
+      console.log(err);
+    });
+  }
+  disegnaTab();
+
+
 });
