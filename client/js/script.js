@@ -20,6 +20,7 @@ $(document).ready(function(){
     // oppure
     this.reset();//pulisce la form dopo aver premuto il tasto
     disegnaTab();
+
   });
 
   function disegnaTab(){
@@ -28,6 +29,7 @@ $(document).ready(function(){
       for(let i=0; i<Users.length;i++)
       {
         str += "<tr>"+
+               "<td><button idutente='" + Users[i]._id+ "' class=' btn btn-primary glyphicon glyphicon-pencil modifica'></button></td>"+
                "<td>" + Users[i].nome + "</td>"+
                "<td>" + Users[i].cognome + "</td>"+
                "<td>" + Users[i].sesso + "</td>"+
@@ -40,6 +42,13 @@ $(document).ready(function(){
         var id = $(this).attr("idutente");
         elimina(id);
       })
+      $('.modifica').click(function(){
+        var id = $(this).attr("idutente");
+        modifica(id);
+        $('#tabella').addClass('hidden');
+        $('#aggiorna').removeClass('hidden');
+
+      })
     }).catch();
 
   }
@@ -51,7 +60,26 @@ $(document).ready(function(){
       console.log(err);
     });
   }
+  $('#nuovo').click(function(){
+    $('#miaform').removeClass('hidden');
+    $('#tabella').hide();
+  });
   disegnaTab();
+
+  function modifica(id){
+    Users.getDetail(id).then(function(user){
+      console.log(user);
+      $('#aggiorna [name= nome]').val(user.nome);
+      $('#aggiorna [name= cognome]').val(user.cognome);
+      $('#aggiorna [name= sesso]').val(user.sesso);
+      $('#aggiorna [name= eta]').val(user.eta);
+      $('#aggiorna').removeClass('hidden');
+    }).catch(function(err){
+      console.log(err);
+    });
+  };
+  disegnaTab();
+
 
 
 });

@@ -25,7 +25,7 @@ module.exports = (function(){
   //dettaglio utente
   var detailUsers = function(req,res){
     var id = req.params.id;
-    User.findeById(id).exec().then(function(data){
+    User.findById(id).exec().then(function(data){
       res.status(200).json(data);
     })
     .catch(function(err){

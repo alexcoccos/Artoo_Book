@@ -32,10 +32,20 @@ var Users= (function(){
     });
   }
 
+  var getDetail = function(id){
+    return $.ajax({
+      url: "http://localhost:3000/Users/id/"+ id,
+      method: "GET",
+      contentType: "application/json",// descrive il contenuto del file
+      dataType: "json",//descrive il tipo di file
+    });
+  }
+
   //sempre alla fine
   return{
     creaUtente: creaUtente,
     getUsers:   getUsers,
-    deleteUser: deleteUser
+    deleteUser: deleteUser,
+    getDetail:  getDetail
   }
 })();

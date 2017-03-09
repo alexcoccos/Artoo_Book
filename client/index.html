@@ -9,7 +9,9 @@
   <body>
     <h1>Artoo_Book</h1>
     <div class="container">
-      <form id="miaform">
+      <button id="nuovo" class="btn btn-primary">ADD NEW</button>
+      <form id="miaform" class="hidden">
+        crea
         <div class="form-group row">
             <label for="example-text-input" class="col-2 col-form-label">Nome</label>
             <div class="col-10">
@@ -38,12 +40,45 @@
               <input class="form-control" type="Number" value="" id="eta" min="16" max="99">
             </div>
         </div>
-        <button class="btn btn-primary" id="crea">NEW USER</button>
+        <button class="btn btn-primary" id="crea">SALVA</button>
+      </form>
+      <form id="aggiorna" class="hidden">
+        aggiorna
+        <div class="form-group row">
+            <label for="example-text-input" class="col-2 col-form-label">Nome</label>
+            <div class="col-10">
+              <input class="form-control" type="text" value="" id="nome1" name="nome" required>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="example-search-input" class="col-2 col-form-label">Cognome</label>
+            <div class="col-10">
+              <input class="form-control" type="search" value="" id="cognome1" name="cognome" required>
+          </div>
+        </div>
+        <div class="form-group row">
+            <label for="example-email-input" class="col-2 col-form-label">Sesso</label>
+            <div class="col-10">
+              <select name="sesso" id="sesso1">
+                <option value="" selected >-- Seleziona sesso --</option>
+                <option value="Male">Uomo</option>
+                <option value="Female">Donna</option>
+              </select>
+          </div>
+        </div>
+        <div class="form-group row">
+            <label for="example-tel-input" class="col-2 col-form-label">Età</label>
+            <div class="col-10">
+              <input  name="eta" class="form-control" type="Number" value="" id="eta1" min="16" max="99">
+            </div>
+        </div>
+        <button class="btn btn-primary" id="crea">SALVA MODIFICHE</button>
       </form>
       <div>
-        <table class="table table-hover">
+        <table class="table table-hover" id="tabella">
           <thead>
             <tr>
+              <th>Modifica</th>
               <th>Nome</th>
               <th>Cognome</th>
               <th>Sesso</th>
